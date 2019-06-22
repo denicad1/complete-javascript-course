@@ -8,14 +8,14 @@ GAME RULES:
 - The first player to reach 100 points on GLOBAL score wins the game
 
 */
-let scores, roundScore,activePlayer,dice;
+let scores, roundScore,activePlayer;
 
 scores=[0,0];
 roundScore=0;
 activePlayer=0;
 
+
 dice= Math.floor(Math.random()*6) + 1;
-console.log(dice);
 
 document.querySelector(`#current-${activePlayer}`).textContent=dice;
 //document.querySelector(`#current-${activePlayer}`).innerHTML=`<em>${dice}</em>`;
@@ -28,9 +28,19 @@ console.log(x);
 
 //document.querySelector('.dice').style.display='none';
 
+document.querySelector('.btn-roll').addEventListener('click',function(){
+    //gets a random number
+   let dice= Math.floor(Math.random()*6) + 1;
+    //display the result
+
+    //update the round score IF the roll isn't 1
+});
+
 function thing(dice){
+    
+    
     let pic=document.getElementById("dice");
-dice= Math.floor(Math.random()*6) + 1;
+    
     console.log(dice);
 switch(dice){
     case 1:
@@ -43,17 +53,19 @@ switch(dice){
     pic.src="dice-3.png";
     break;
     case 4:
-    pic.src="dice-4";
+    pic.src="dice-4.png";
     break;
     case 5:
-    pic.src="dice-5";
+    pic.src="dice-5.png";
     break;
     case 6:
-    pic.src="dice-6";
+    pic.src="dice-6.png";
     break;
     default:
     console.log('wrong');
     
 }
-    };
-console.log(thing());
+    }
+
+let click=document.getElementsByClassName("btn-roll");
+click.click(thing(dice));
