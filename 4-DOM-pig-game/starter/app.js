@@ -32,7 +32,9 @@ document.querySelector('.btn-roll').addEventListener('click',function(){
     //gets a random number
    let dice= Math.floor(Math.random()*6) + 1;
     //display the result
-
+    let diceDOM=document.querySelector('.dice');
+    diceDOM.style.display='block';
+    diceDOM.src=`dice-${dice}.png`;
     //update the round score IF the roll isn't 1
 });
 
@@ -67,5 +69,3 @@ switch(dice){
 }
     }
 
-let click=document.getElementsByClassName("btn-roll");
-click.click(thing(dice));
