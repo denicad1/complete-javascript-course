@@ -44,20 +44,36 @@ document.querySelector('.btn-roll').addEventListener('click',function(){
         roundScore+=dice;
         document.querySelector(`#current-${activePlayer}`).textContent=roundScore;
     }else{
-        //next player
-        scores[activePlayer]+=roundScore;
-        document.getElementById(`score-${activePlayer}`).textContent=scores[activePlayer];
-        roundScore=0;
+        //next player 
+        nextPlayer();
+    }  
+});
+//document.getElementById(`current-${activePlayer}`);
+document.querySelector('.btn-hold').addEventListener('click',function(){
+    //add current score to global score
+    scores[activePlayer]+=roundScore;
+    //update the UI
+    document.getElementById(`score-${activePlayer}`).textContent=scores[activePlayer];
+    //check to see if a player won a game
+    if(scores[activePlayer]>=20) {document.querySelector(`#name-${activePlayer}`).textContent='Winner';
+                                  document.querySelector(`.player-${activePlayer}-panel`).classList.add('winner');
+                                  document.querySelector(`.player-${activePlayer}-panel`).classList.remove('active');
+                                 }
+    else{ nextPlayer();}
+    
+   
+    
+});
+
+const nextPlayer = ()=>{
+    roundScore=0;
         activePlayer===0 ?activePlayer=1:activePlayer=0;
         document.querySelector('.player-0-panel').classList.toggle('active');
         document.querySelector('.player-1-panel').classList.toggle('active');
         document.getElementById('dice').style.display='none';
-    }
-    
-    
-    
-});
-document.getElementById(`current-${activePlayer}`);
+    document.getElementById('current-0').textContent="0";
+    document.getElementById('current-1').textContent="0";
+};
 
 
 
@@ -85,34 +101,5 @@ document.getElementById(`current-${activePlayer}`);
 
 
 
-function thing(dice){
-    
-    
-    let pic=document.getElementById("dice");
-    
-    console.log(dice);
-switch(dice){
-    case 1:
-    pic.src=`dice-${dice}.png`;
-    break;
-    case 2:
-    pic.src="dice-2.png";
-    break;
-    case 3:
-    pic.src="dice-3.png";
-    break;
-    case 4:
-    pic.src="dice-4.png";
-    break;
-    case 5:
-    pic.src="dice-5.png";
-    break;
-    case 6:
-    pic.src="dice-6.png";
-    break;
-    default:
-    console.log('wrong');
-    
-}
-    }
+
 
