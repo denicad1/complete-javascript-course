@@ -85,9 +85,7 @@ document.querySelector(".btn-hold").addEventListener("click", function() {
   //update the UI
   document.getElementById(`score-${activePlayer}`).textContent =
     scores[activePlayer];
-        if(value){}else{
-            value=100;
-        }
+        if(!value){value=100;}
   //check to see if a player won a game
   if (scores[activePlayer] >= value) {
     document.querySelector(`#name-${activePlayer}`).textContent = "Winner";
