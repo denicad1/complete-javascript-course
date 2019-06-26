@@ -54,7 +54,7 @@ document.querySelector(".btn-roll").addEventListener("click", function() {
   } else {
     //next player
     nextPlayer();
-  }console.log(dice);
+  }
     //if the previous dice roll and current dice roll both equal 6, next turn
   if(dicePrev===6&&dice===6||dice1Prev===6&&dice1num===6||dice===6&&dice1num===6){
       document.getElementById(`score-${activePlayer}`).textContent=0;
@@ -85,6 +85,9 @@ document.querySelector(".btn-hold").addEventListener("click", function() {
   //update the UI
   document.getElementById(`score-${activePlayer}`).textContent =
     scores[activePlayer];
+        if(value){}else{
+            value=100;
+        }
   //check to see if a player won a game
   if (scores[activePlayer] >= value) {
     document.querySelector(`#name-${activePlayer}`).textContent = "Winner";
