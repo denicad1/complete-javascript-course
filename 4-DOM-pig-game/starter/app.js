@@ -56,7 +56,7 @@ document.querySelector(".btn-roll").addEventListener("click", function() {
     nextPlayer();
   }console.log(dice);
     //if the previous dice roll and current dice roll both equal 6, next turn
-  if(dicePrev===6&&dice===6||dice1Prev===6&&dice1num===6){
+  if(dicePrev===6&&dice===6||dice1Prev===6&&dice1num===6||dice===6&&dice1num===6){
       document.getElementById(`score-${activePlayer}`).textContent=0;
       document.querySelector(`#current-${activePlayer}`).textContent = 0;
       nextPlayer();
