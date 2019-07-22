@@ -94,6 +94,9 @@ let budgetController = (function () {
                 percentage: data.percentage
             }
         },
+        calculatePercentages: function () {
+
+        },
         testing: function () {
             console.log(data);
         }
@@ -178,7 +181,7 @@ let UIController = (function () {
 })();
 //GLOBAL APP CONTROLLER
 let controller = (function (budgetCtrl, UIctrl) {
-    let updateBudget, ctrlAddItem, budget, ctrlDeleteItem;
+    let updateBudget, ctrlAddItem, budget, ctrlDeleteItem, updatePercentages;
     updateBudget = function () {
         //calculate budget
         budgetCtrl.calculateBudget();
@@ -188,6 +191,14 @@ let controller = (function (budgetCtrl, UIctrl) {
 
         UIctrl.displayBudget(budget);
     };
+    updatePercentages = function () {
+        //1. calculate percentages
+
+        //2. read percentages from budgetController
+
+        //3. update UI with the new percentages
+    }
+
 
     ctrlAddItem = function () {
         let input, newItem;
@@ -204,6 +215,8 @@ let controller = (function (budgetCtrl, UIctrl) {
             UIctrl.clearFields();
             //5. calculate and update budget
             updateBudget();
+            //6. update and show percentages
+            updatePercentages();
         }
 
     };
@@ -222,6 +235,8 @@ let controller = (function (budgetCtrl, UIctrl) {
             UIctrl.deleteListItem(itemID);
             //3. update and show the new budget
             updateBudget();
+            //4. update and show percentages
+            updatePercentages();
         }
     };
 
