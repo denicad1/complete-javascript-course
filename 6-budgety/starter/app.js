@@ -4,7 +4,19 @@ let budgetController = (function () {
         this.id = id;
         this.description = description;
         this.value = value;
+        this.percentage = -1;
     };
+
+    Expense.prototype.calculatePercentage = function (totalIncome) {
+        if (totalIncome > 0) {
+            this.percentage = Math.round(this.value / totalIncome * 100);
+        } else {
+            this.percentage = -1;
+        }
+    }
+    Expense.prototype.getPercentage = function () {
+        return this.percentage;
+    }
     let Income = function (id, description, value) {
         this.id = id;
         this.description = description;
@@ -84,6 +96,17 @@ let budgetController = (function () {
             }
 
         },
+        calculatePercentages: function () {
+            data.allItems.exp.forEach(function (current) {
+                current.calculatePercentage(data.totals.inc);
+            });
+        },
+        getPercentages: function () {
+            let allPercentages = data.allItems.exp.map(function (current) {
+                return current.getPercentage();
+            });
+            return allPercentages;
+        },
 
 
         getBudget: function () {
@@ -94,9 +117,7 @@ let budgetController = (function () {
                 percentage: data.percentage
             }
         },
-        calculatePercentages: function () {
 
-        },
         testing: function () {
             console.log(data);
         }
@@ -181,7 +202,7 @@ let UIController = (function () {
 })();
 //GLOBAL APP CONTROLLER
 let controller = (function (budgetCtrl, UIctrl) {
-    let updateBudget, ctrlAddItem, budget, ctrlDeleteItem, updatePercentages;
+    let updateBudget, ctrlAddItem, budget, ctrlDeleteItem, updatePercentages, percentages, setupEventListeners;
     updateBudget = function () {
         //calculate budget
         budgetCtrl.calculateBudget();
@@ -193,9 +214,10 @@ let controller = (function (budgetCtrl, UIctrl) {
     };
     updatePercentages = function () {
         //1. calculate percentages
-
+        budgetCtrl.calculatePercentages();
         //2. read percentages from budgetController
-
+        percentages = budgetCtrl.getPercentages();
+        console.log(percentages);
         //3. update UI with the new percentages
     }
 
@@ -205,7 +227,6 @@ let controller = (function (budgetCtrl, UIctrl) {
         //1.get the file input data
         input = UIctrl.getInput();
         if (input.description !== "" && !isNaN(input.value) && input.value > 0) {
-            console.log(input);
             //2. add the item to the budget controller
             newItem = budgetCtrl.addItem(input.type, input.description, input.value);
 
@@ -214,6 +235,7 @@ let controller = (function (budgetCtrl, UIctrl) {
             //4.clear the fields
             UIctrl.clearFields();
             //5. calculate and update budget
+
             updateBudget();
             //6. update and show percentages
             updatePercentages();
@@ -241,7 +263,7 @@ let controller = (function (budgetCtrl, UIctrl) {
     };
 
 
-    let setupEventListeners = function () {
+    setupEventListeners = function () {
         let DOM = UIctrl.getDomStrings();
         document.querySelector(DOM.inputBtn).addEventListener('click', ctrlAddItem);
         document.addEventListener('keypress', function (event) {
