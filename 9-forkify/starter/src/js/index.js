@@ -1,17 +1,36 @@
 // Global app controller
-import axios from 'axios';
-async function getResults(query) {
+import Search from './models/Search';
+import * as searchView from './views/searchView';
+import {
+    elements
+} from './views/base';
+//Global State of the App
+//search object
+//current recipe object
+//shopping list object
+//liked recipes
+const state = {}
 
-    const proxy = 'https://cors-anywhere.herokuapp.com/'
-    const key = '55783bb0daed27066351dbde84adf294';
-    try {
-        const res = await axios(`${proxy}https://www.food2fork.com/api/search?key=${key}&q=${query}`);
-        const recipes = res.data.recipes;
-        console.log(recipes);
-    } catch (error) {
-        alert(error);
+
+const controlSearch = async () => {
+    //1. get the query
+    const query = searchView.getInput(); //TODO
+    if (query) {
+        //2. new search object and add it to state
+        state.search = new Search(query);
+        //3. prepare UI for results
+
+        //4. search for recipes
+        await state.search.getResults();
+
+        //5. render results on UI
+        searchView.renderResults(state.search.result);
     }
+
 }
-getResults('pasta');
-//55783 bb0daed27066351dbde84adf294
-//https: //www.food2fork.com/api/search
+
+elements.searchForm.addEventListener('submit', e => {
+    e.preventDefault();
+    controlSearch();
+
+})
