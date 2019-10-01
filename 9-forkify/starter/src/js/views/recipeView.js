@@ -1,7 +1,23 @@
-import { elements } from "./base";
+import {
+    elements
+} from "./base";
+export const clearRecipe = () => {
+    elements.recipe.innerHTML = '';
+}
 
+const createIngredient = ingredient => `
+    <li class="recipe__item">
+        <svg class="recipe__icon">
+            <use href="img/icons.svg#icon-check"></use>
+        </svg>
+        <div class="recipe__count">${ingredient.count}</div>
+        <div class="recipe__ingredient">
+            <span class="recipe__unit">${ingredient.unit}</span>
+            pasta
+        </div>
+    </li>`;
 export const renderRecipe = (recipe) => {
-  const markup = `
+    const markup = `
             <figure class="recipe__fig">
                 <img src="${recipe.img}" alt="${recipe.title}" class="recipe__img">
                 <h1 class="recipe__title">
@@ -48,17 +64,7 @@ export const renderRecipe = (recipe) => {
 
             <div class="recipe__ingredients">
                 <ul class="recipe__ingredient-list">
-                    <li class="recipe__item">
-                        <svg class="recipe__icon">
-                            <use href="img/icons.svg#icon-check"></use>
-                        </svg>
-                        <div class="recipe__count">1000</div>
-                        <div class="recipe__ingredient">
-                            <span class="recipe__unit">g</span>
-                            pasta
-                        </div>
-                    </li>
-
+                    ${recipe.ingredients.map((el)=>{createIngredient(el)}).join(' ')}
                     
                 </ul>
 
@@ -85,8 +91,6 @@ export const renderRecipe = (recipe) => {
                 </a>
             </div>
     
-    
-    
     `;
-  elements.recipe.insertAdjacentHTML("afterbegin", markup);
+    elements.recipe.insertAdjacentHTML("afterbegin", markup);
 };
