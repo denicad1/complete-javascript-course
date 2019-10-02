@@ -67,9 +67,16 @@ const controlRecipe = async () => {
     const id = window.location.hash.replace("#", "");
     console.log(id);
     if (id) {
+
         //Prepare the UI for changes
         recipeView.clearRecipe();
         renderLoader(elements.recipe);
+
+        //Highlight selected search item
+        if (state.search) {
+            searchView.highlightSelected(id);
+        }
+
         //create a new recipe object
         state.recipe = new Recipe(id);
 
