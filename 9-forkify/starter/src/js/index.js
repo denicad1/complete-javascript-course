@@ -8,6 +8,7 @@ import {
     clearLoader
 } from "./views/base";
 import Recipe from "./models/Recipe";
+import List from "./models/list";
 //Global State of the App
 //search object
 //current recipe object
@@ -115,5 +116,11 @@ elements.recipe.addEventListener('click', e => {
         //Increase button is clicked
         state.recipe.updateServings('inc');
     }
-    console.log(state.recipe);
 });
+
+
+
+
+
+
+window.l = new List();
