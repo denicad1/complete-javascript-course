@@ -2,7 +2,8 @@ import axios from "axios";
 import {
     key,
     proxy,
-    key1
+    key1,
+    key2
 } from "../config";
 export default class Recipe {
     constructor(id) {
@@ -11,7 +12,7 @@ export default class Recipe {
     async getRecipe() {
         try {
             const res = await axios(
-                `${proxy}https://www.food2fork.com/api/get?key=${key1}&rId=${this.id}`
+                `${proxy}https://www.food2fork.com/api/get?key=${key2}&rId=${this.id}`
             );
             this.title = res.data.recipe.title;
             this.author = res.data.recipe.publisher;
