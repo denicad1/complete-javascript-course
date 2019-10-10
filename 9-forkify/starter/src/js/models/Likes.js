@@ -39,7 +39,7 @@ export default class Likes {
     };
 
     persistData() {
-        localStorage.setItem('likes', json.stringify(this.likes));
+        localStorage.setItem('likes', JSON.stringify(this.likes));
 
 
     }
