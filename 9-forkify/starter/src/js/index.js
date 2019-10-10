@@ -177,7 +177,7 @@ const controlLike = () => {
 }
 
 //Restore like recipes on page load
-windows.addEventListener('load', () => {
+window.addEventListener('load', () => {
     state.likes = new Likes();
 
     //restore likes
