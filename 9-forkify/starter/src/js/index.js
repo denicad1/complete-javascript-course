@@ -98,9 +98,10 @@ const controlRecipe = async () => {
             //render recipe
             //
             clearLoader();
-            recipeView.renderRecipe(state.recipe);
+            recipeView.renderRecipe(state.recipe, state.likes.isLiked(id));
             console.log(state.recipe);
         } catch (err) {
+            console.log(err);
             alert("Error processing recipe!");
         }
     }
@@ -145,6 +146,10 @@ elements.shopping.addEventListener('click', e => {
 Like Controller
 
 */
+//TESTING
+state.likes = new Likes();
+likesView.toggleLikeMenu(state.likes.getNumLikes());
+
 
 const controlLike = () => {
     if (!state.likes) {
@@ -158,7 +163,8 @@ const controlLike = () => {
         //Toggle the like button
         likesView.toggleLikeBtn(true);
         //Add like to UI list
-        console.log(state.likes)
+        likesView.renderLike(newLike);
+
 
         //User has liked current recipe
     } else {
@@ -167,8 +173,9 @@ const controlLike = () => {
         //Toggle the like button
         likesView.toggleLikeBtn(false);
         //Remove like from UI list
-        console.log(state.likes)
+        likesView.deleteLike(currentID);
     }
+    likesView.toggleLikeMenu(state.likes.getNumLikes());
 }
 
 
