@@ -178,6 +178,19 @@ const controlLike = () => {
     likesView.toggleLikeMenu(state.likes.getNumLikes());
 }
 
+//Restore like recipes on page load
+windows.addEventListener('load', () => {
+    state.likes = new Likes();
+
+    //restore likes
+    state.likes.readStorage();
+
+    //toggle like menu button
+    likesView.toggleLikeMenu(state.likes.getNumLikes());
+
+    ////render the existing likes
+    state.likes.likes.forEach(like => likesView.renderLike(like))
+});
 
 
 // Handling recipe button clicks
