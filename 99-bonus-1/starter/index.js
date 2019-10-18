@@ -27,14 +27,7 @@ const server = http.createServer((req, res) => {
         });
         fs.readFile(`${__dirname}/templates/template-laptop.html`, 'utf-8', (err, data) => {
             const laptop = laptopData[id];
-            let output = data.replace(/{%PRODUCTNAME%}/g, laptop.productName);
-            output = output.replace(/{%IMAGE%}/g, laptop.image);
-            output = output.replace(/{%PRICE%}/g, laptop.price);
-            output = output.replace(/{%SCREEN%}/g, laptop.screen);
-            output = output.replace(/{%CPU%}/g, laptop.cpu);
-            output = output.replace(/{%STORAGE%}/g, laptop.storage);
-            output = output.replace(/{%RAM%}/g, laptop.ram);
-            output = output.replace(/{%DESCRIPTION%}/g, laptop.description);
+
             res.end(output);
         });
     } else {
