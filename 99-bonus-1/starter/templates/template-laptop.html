@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://fonts.googleapis.com/css?family=Bungee+Inline|Nunito+Sans" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+    <!-- <link href="css/style.css" rel="stylesheet">-->
 
     <title>{%PRODUCTNAME%}/// The Laptop Store!</title>
 
@@ -211,7 +211,6 @@
             font-size: 2rem;
             margin-left: 1rem;
         }
-
     </style>
 </head>
 
@@ -220,7 +219,7 @@
         <h1>The Laptop Store!</h1>
         <figure class="laptop">
             <p class="laptop__price">${%PRICE%}</p>
-            <a href="overview.html" class="laptop__back"><span class="emoji-left">👈</span>Back</a>
+            <a href="products" class="laptop__back"><span class="emoji-left">👈</span>Back</a>
             <div class="laptop__hero">
                 <img src="/{%IMAGE%}" alt="{%PRODUCTNAME%}" class="laptop__img">
             </div>
@@ -234,7 +233,9 @@
             <p class="laptop__description">
                 {%DESCRIPTION%}
             </p>
-            <p class="laptop__source">Source: <a href="https://www.techradar.com/news/mobile-computing/laptops/best-laptops-1304361" target="_blank">https://www.techradar.com/news/mobile-computing/laptops/best-laptops-1304361</a></p>
+            <p class="laptop__source">Source: <a
+                    href="https://www.techradar.com/news/mobile-computing/laptops/best-laptops-1304361"
+                    target="_blank">https://www.techradar.com/news/mobile-computing/laptops/best-laptops-1304361</a></p>
             <a href="#" class="laptop__link">Buy now for ${%PRICE%} <span class="emoji-right">🥳 😍</span></a>
 
         </figure>
